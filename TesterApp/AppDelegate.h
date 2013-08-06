@@ -12,8 +12,13 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) ViewController *viewController;
+    // TODO: make it a "private" function..
+    - (void)setupNavControllerVisuals: (UINavigationController *)navController;
+
+
+    @property (strong, nonatomic) UIWindow *window;
+    @property (strong, nonatomic) ViewController *viewController;
+    @property (strong, nonatomic) UINavigationController *navController;
 
 @end

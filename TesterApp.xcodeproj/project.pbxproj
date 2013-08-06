@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B02126BB17AF6DA30005F172 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B028817817AC15F800309576 /* TableViewCell.m */; };
 		B028814217A0D79A00309576 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B028814117A0D79A00309576 /* UIKit.framework */; };
 		B028814417A0D79A00309576 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B028814317A0D79A00309576 /* Foundation.framework */; };
 		B028814617A0D79A00309576 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B028814517A0D79A00309576 /* CoreGraphics.framework */; };
@@ -19,6 +20,7 @@
 		B028815B17A0D79A00309576 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B028815A17A0D79A00309576 /* ViewController.m */; };
 		B028815E17A0D79A00309576 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B028815C17A0D79A00309576 /* ViewController_iPhone.xib */; };
 		B028816117A0D79A00309576 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B028815F17A0D79A00309576 /* ViewController_iPad.xib */; };
+		B028817117A782A300309576 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = B028817017A782A300309576 /* Track.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,11 @@
 		B028815A17A0D79A00309576 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B028815D17A0D79A00309576 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		B028816017A0D79A00309576 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		B028816F17A782A300309576 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		B028817017A782A300309576 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		B028817217A78CF600309576 /* helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = helper.h; sourceTree = "<group>"; };
+		B028817717AC15F800309576 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		B028817817AC15F800309576 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,12 +92,17 @@
 		B028814717A0D79A00309576 /* TesterApp */ = {
 			isa = PBXGroup;
 			children = (
+				B028817217A78CF600309576 /* helper.h */,
 				B028815017A0D79A00309576 /* AppDelegate.h */,
 				B028815117A0D79A00309576 /* AppDelegate.m */,
 				B028815917A0D79A00309576 /* ViewController.h */,
 				B028815A17A0D79A00309576 /* ViewController.m */,
 				B028815C17A0D79A00309576 /* ViewController_iPhone.xib */,
+				B028817717AC15F800309576 /* TableViewCell.h */,
+				B028817817AC15F800309576 /* TableViewCell.m */,
 				B028815F17A0D79A00309576 /* ViewController_iPad.xib */,
+				B028816F17A782A300309576 /* Track.h */,
+				B028817017A782A300309576 /* Track.m */,
 				B028814817A0D79A00309576 /* Supporting Files */,
 			);
 			path = TesterApp;
@@ -180,6 +192,8 @@
 				B028814E17A0D79A00309576 /* main.m in Sources */,
 				B028815217A0D79A00309576 /* AppDelegate.m in Sources */,
 				B028815B17A0D79A00309576 /* ViewController.m in Sources */,
+				B028817117A782A300309576 /* Track.m in Sources */,
+				B02126BB17AF6DA30005F172 /* TableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +278,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_CFLAGS = (
+					"-v",
+					"-DNS_BLOCK_ASSERTIONS=1",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -312,6 +329,7 @@
 				B028816617A0D79A00309576 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

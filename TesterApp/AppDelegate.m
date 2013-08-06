@@ -10,7 +10,16 @@
 
 #import "ViewController.h"
 
+
 @implementation AppDelegate
+
+- (void)setupNavControllerVisuals: (UINavigationController *)navController
+{
+    // [UIImage alloc]
+    // [[self.navController.navigationBar appearance] setBackgroundImage:myImage forBarMetrics:UIBarMetricsDefault];
+}
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -21,7 +30,11 @@
     } else {
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
     }
+    
     self.window.rootViewController = self.viewController;
+    self.navController = [[UINavigationController alloc] initWithRootViewController:self.window.rootViewController];
+    [self setupNavControllerVisuals: self.navController];
+    [[self window] setRootViewController:self.navController];
     [self.window makeKeyAndVisible];
     return YES;
 }
