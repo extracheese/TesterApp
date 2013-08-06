@@ -151,9 +151,9 @@
                 NSLog(@"OH NO cell changed!! :( was %d, now is %d",cell.row,indexPath.row);
                 return;
             }
-            NSArray* array = [NSArray arrayWithObject:indexPath];
             [cell stopLoadingIndicator];
-            [_table reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationNone];
+//          NSArray* array = [NSArray arrayWithObject:indexPath];
+//          [_table reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationNone];
             NSLog(@"img load row: %d ",cell.row);
         }
         else{

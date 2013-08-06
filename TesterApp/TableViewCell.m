@@ -10,7 +10,7 @@
 #import "helper.h"
 
 #define kViewTag_ArtistName 4
-#define kViewTag_ImageView 1
+#define kViewTag_ImageView 20
 #define kViewTag_Spinner 2
 #define kViewTag_TrackName 3
 
@@ -43,7 +43,8 @@
                                   kCellHeight - [track.artistName sizeWithFont:artistName.font].height - 4,
                                   [track.artistName sizeWithFont:artistName.font].width,
                                   [track.artistName sizeWithFont:artistName.font].height);
-  
+    
+    
     
     // Setup imageview
     UIImageView* imageView = (UIImageView*)[self viewWithTag:kViewTag_ImageView];
@@ -51,8 +52,6 @@
         imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kCellHeight, kCellHeight)];
         imageView.tag = kViewTag_ImageView;
         [self addSubview:imageView];
-        
-        //[imageView setBackgroundColor: [UIColor greenColor]];
     }
     
     // put spinner in
@@ -79,29 +78,37 @@
                                  [track.trackName sizeWithFont:trackName.font].width,
                                  [track.trackName sizeWithFont:trackName.font].height);
 
-    trackName.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:0.5 alpha:0.8];
+    // trackName.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:0.5 alpha:0.8];
     
-
-
     // init image load
     if(track.artworkImageURL){
+        //static NSMutableDictionary* imageCache = [[NSMutableDictionary alloc] initWithCapacity:kCacheCapacity];
+        
             dispatch_async(kBgQueue, ^{
-                UIImageView* imageView1 = (UIImageView*)[self viewWithTag:kViewTag_ImageView];
-                imageView1.image = [UIImage imageNamed:[track.artworkImageURL absoluteString]];
-                [self performSelectorOnMainThread:@selector(notifyTable:)
-                                       withObject:self waitUntilDone:NO];
+                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:track.artworkImageURL]];
 
+                [self performSelectorOnMainThread:@selector(notifyTable:) withObject:image waitUntilDone:YES];
+                
         });
     }
-  
-    //[self setNeedsLayout];
 }
 
 -(void) notifyTable: (NSObject*)object {
     UIImageView* imageView1 = (UIImageView*)[self viewWithTag:kViewTag_ImageView];
-    [imageView1 setNeedsDisplay];
+    imageView1.image = (UIImage*) object;
+
+    /*
+     if(imageView1){
+        NSString* pathToImageFile = [[NSBundle mainBundle] pathForResource:@"Heart_Pressed_200x200" ofType:@"png"];
+        UIImage* retVal = [UIImage imageWithContentsOfFile:pathToImageFile];
+        imageView1.image = (UIImage*) retVal;
+        
+    }*/
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CellImageLoad" object:object];
+    NSLog(@"%f image loaded: %d",[Helper millisecondsSinceStart], self.row);
+    
+    [self stopLoadingIndicator];
+    [self setNeedsLayout];
 }
 
 -(void) stopLoadingIndicator{

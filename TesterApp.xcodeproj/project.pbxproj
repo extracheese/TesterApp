@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91FE37CB17B1A64B00E394A3 /* helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FE37CA17B1A64B00E394A3 /* helper.m */; };
+		91FE37CD17B1B2B600E394A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91FE37CC17B1B2B600E394A3 /* QuartzCore.framework */; };
+		91FE37CF17B1B6C900E394A3 /* Heart_Pressed_200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = 91FE37CE17B1B6C900E394A3 /* Heart_Pressed_200x200.png */; };
 		B02126BB17AF6DA30005F172 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B028817817AC15F800309576 /* TableViewCell.m */; };
 		B028814217A0D79A00309576 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B028814117A0D79A00309576 /* UIKit.framework */; };
 		B028814417A0D79A00309576 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B028814317A0D79A00309576 /* Foundation.framework */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		91FE37CA17B1A64B00E394A3 /* helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helper.m; sourceTree = "<group>"; };
+		91FE37CC17B1B2B600E394A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		91FE37CE17B1B6C900E394A3 /* Heart_Pressed_200x200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart_Pressed_200x200.png; sourceTree = "<group>"; };
 		B028813E17A0D79A00309576 /* TesterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B028814117A0D79A00309576 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B028814317A0D79A00309576 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91FE37CD17B1B2B600E394A3 /* QuartzCore.framework in Frameworks */,
 				B028814217A0D79A00309576 /* UIKit.framework in Frameworks */,
 				B028814417A0D79A00309576 /* Foundation.framework in Frameworks */,
 				B028814617A0D79A00309576 /* CoreGraphics.framework in Frameworks */,
@@ -65,6 +72,7 @@
 		B028813517A0D79A00309576 = {
 			isa = PBXGroup;
 			children = (
+				91FE37CC17B1B2B600E394A3 /* QuartzCore.framework */,
 				B028814717A0D79A00309576 /* TesterApp */,
 				B028814017A0D79A00309576 /* Frameworks */,
 				B028813F17A0D79A00309576 /* Products */,
@@ -92,7 +100,9 @@
 		B028814717A0D79A00309576 /* TesterApp */ = {
 			isa = PBXGroup;
 			children = (
+				91FE37CE17B1B6C900E394A3 /* Heart_Pressed_200x200.png */,
 				B028817217A78CF600309576 /* helper.h */,
+				91FE37CA17B1A64B00E394A3 /* helper.m */,
 				B028815017A0D79A00309576 /* AppDelegate.h */,
 				B028815117A0D79A00309576 /* AppDelegate.m */,
 				B028815917A0D79A00309576 /* ViewController.h */,
@@ -179,6 +189,7 @@
 				B028815817A0D79A00309576 /* Default-568h@2x.png in Resources */,
 				B028815E17A0D79A00309576 /* ViewController_iPhone.xib in Resources */,
 				B028816117A0D79A00309576 /* ViewController_iPad.xib in Resources */,
+				91FE37CF17B1B6C900E394A3 /* Heart_Pressed_200x200.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +205,7 @@
 				B028815B17A0D79A00309576 /* ViewController.m in Sources */,
 				B028817117A782A300309576 /* Track.m in Sources */,
 				B02126BB17AF6DA30005F172 /* TableViewCell.m in Sources */,
+				91FE37CB17B1A64B00E394A3 /* helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
