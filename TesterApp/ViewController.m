@@ -11,6 +11,8 @@
 #import "helper.h"
 #import "TableViewCell.h"
 
+#import "PlayerViewController.h"
+
 
 #define kItunesSearchUrl [NSURL URLWithString:@"https://itunes.apple.com/search?term=jack+johnson&limit=25"] //2
 
@@ -22,18 +24,15 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     _tracks = nil;
-    CGRect rect = CGRectMake(0, 0, 360, 400);
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+    CGRect rect = CGRectMake(0, 0, (NSInteger)screenRect.size.width, (NSInteger)screenRect.size.height);
     
     _table = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
     _table.dataSource = self;
     _table.delegate = self;
     [self.view addSubview:_table];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveCellImageLoad:)
-                                                 name:@"CellImageLoad"
-                                               object:nil];
-
+   
     // start loading data from URL
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL:
@@ -96,8 +95,6 @@
     }
     return 0;
 }
-
-
     
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
@@ -113,17 +110,10 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-     TableViewCell* cell = (TableViewCell*)[tableView dequeueReusableCellWithIdentifier: [TableViewCell cellIdentifier]];
-    
+    TableViewCell* cell = (TableViewCell*)[tableView dequeueReusableCellWithIdentifier: [TableViewCell cellIdentifier]];
     
     if (cell == nil){
         cell = (TableViewCell*)[[TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[TableViewCell cellIdentifier]];
-        cell.backgroundColor = [UIColor yellowColor];
-        
-        NSLog(@"cell4row NEW: %d ",[indexPath row]);
-    } else {
-        
-        NSLog(@"cell4row reuse: %d ",[indexPath row]);
     }
     
     if(!_tracks){
@@ -131,35 +121,21 @@
     }
     
     Track* track = [_tracks objectAtIndex:[indexPath row]];
+    
     if(cell.track != track){
         [cell refreshLayoutWithTrack: track atIndex: [indexPath row]];
     }
     return cell;
 }
 
-
--(void) receiveCellImageLoad: (NSNotification*) notification{
-    if(!_table){
-        return;
-    }
-    TableViewCell* cell = (TableViewCell*) [notification object];
+// Tap on table Row
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath {
     
-    if([[notification name] isEqualToString:@"CellImageLoad"]){
-        NSIndexPath* indexPath = [_table indexPathForCell: cell];
-        if(indexPath){
-            if(indexPath.row != cell.row){
-                NSLog(@"OH NO cell changed!! :( was %d, now is %d",cell.row,indexPath.row);
-                return;
-            }
-            [cell stopLoadingIndicator];
-//          NSArray* array = [NSArray arrayWithObject:indexPath];
-//          [_table reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationNone];
-            NSLog(@"img load row: %d ",cell.row);
-        }
-        else{
-            NSLog(@"nil index path in receiveCellImageLoad %d", cell.row);
-            
-        }
+    TableViewCell* cell = (TableViewCell*)[_table cellForRowAtIndexPath:indexPath];
+    if(cell.track.previewURL){
+        PlayerViewController* playerViewController = [[PlayerViewController alloc] initWithNibName:@"PlayerViewController" track:cell.track];
+
+        [self.navigationController pushViewController: playerViewController animated:YES];
     }
 }
 

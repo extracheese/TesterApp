@@ -10,7 +10,14 @@
 #import <UIKit/UIKit.h>
 #import "Track.h"
 
+typedef enum {
+    kEnabled,
+    kDisabled
+} CellStyleType;
+
 @interface TableViewCell : UITableViewCell
+
+
 
 @property (weak,nonatomic) Track* track;
 @property NSInteger row;
@@ -20,6 +27,8 @@
 -(void) refreshLayoutWithTrack:(Track*)track atIndex:(NSInteger) row;
 -(void) stopLoadingIndicator;
 -(void) notifyTable: (NSObject*) object;
+-(void) setStyle:(CellStyleType) styleType;
+
 
 
 @end

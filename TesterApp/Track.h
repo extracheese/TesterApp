@@ -41,6 +41,10 @@
     - (id) initWithDictionary: (NSDictionary*) dictionary;
 
     @property NSString* artistName;
-@property NSString* trackName;
+    @property NSString* trackName;
     @property NSURL* artworkImageURL;
+    @property NSURL* previewURL;
+    @property NSInteger artistID;
+    @property NSInteger trackID;
+
 @end

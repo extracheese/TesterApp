@@ -18,6 +18,11 @@
     _artworkImageURL = [[NSURL alloc] initWithString: (NSString*)[dictionary objectForKey: @"artworkUrl100"]];
     _trackName = [dictionary objectForKey: @"trackName"];
     
+    NSString* urlString = (NSString*)[dictionary objectForKey: @"previewUrl"];
+    if(urlString){
+            _previewURL = [[NSURL alloc] initWithString: urlString];
+        NSLog(@"%@",urlString);
+    }
     return self;
 }
 

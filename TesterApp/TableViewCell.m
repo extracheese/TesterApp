@@ -5,9 +5,8 @@
 //  Created by Ogishi on 8/2/13.
 //  Copyright (c) 2013 Ogishi. All rights reserved.
 //
-
-#import "TableViewCell.h"
 #import "helper.h"
+#import "TableViewCell.h"
 
 #define kViewTag_ArtistName 4
 #define kViewTag_ImageView 20
@@ -18,6 +17,7 @@
 #define kPadding 5
 
 @implementation TableViewCell
+
 
 +(NSString*) cellIdentifier{
     return @"TrackCell";
@@ -36,6 +36,10 @@
     if(!artistName){
         artistName = [[UILabel alloc] init];
         artistName.tag = kViewTag_ArtistName;
+        
+        
+        artistName.font = [UIFont fontWithName:@"Helvetica-Bold" size:10.0];
+        artistName.textColor = [UIColor darkGrayColor];
         [self addSubview:artistName];
     }
     [artistName setText:track.artistName ];
@@ -44,52 +48,67 @@
                                   [track.artistName sizeWithFont:artistName.font].width,
                                   [track.artistName sizeWithFont:artistName.font].height);
     
-    
-    
     // Setup imageview
     UIImageView* imageView = (UIImageView*)[self viewWithTag:kViewTag_ImageView];
     if(!imageView){
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kCellHeight, kCellHeight)];
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, kCellHeight-10, kCellHeight-10)];
         imageView.tag = kViewTag_ImageView;
         [self addSubview:imageView];
     }
+    imageView.image = nil;
     
-    // put spinner in
+    // Put spinner in
     UIActivityIndicatorView* spinner = (UIActivityIndicatorView*)[self viewWithTag:kViewTag_Spinner];
     if(!spinner){
         spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         spinner.tag = kViewTag_Spinner;
         spinner.frame = CGRectMake(0, 0, kCellHeight, kCellHeight);
-        //[spinner setBackgroundColor:[UIColor darkGrayColor]];
         [self addSubview:spinner];
     }
     [spinner startAnimating];
     
-    // track name label
+    // Track name label
     UILabel* trackName = (UILabel*)[self viewWithTag:kViewTag_TrackName];
     if(!trackName){
         trackName = [[UILabel alloc] init];
         trackName.tag = kViewTag_TrackName;
-              [self addSubview:trackName];
+        trackName.font = [UIFont fontWithName:@"Helvetica-Light" size:14.0];
+         [self addSubview:trackName];
     }
     [trackName setText:track.trackName];
     trackName.frame = CGRectMake(kCellHeight + kPadding,
-                                 artistName.frame.origin.y - [track.artistName sizeWithFont:artistName.font].height + 2,
+                                 artistName.frame.origin.y - ([track.artistName sizeWithFont:artistName.font].height + 3),
                                  [track.trackName sizeWithFont:trackName.font].width,
                                  [track.trackName sizeWithFont:trackName.font].height);
 
-    // trackName.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:0.5 alpha:0.8];
-    
-    // init image load
+    // Init image load
     if(track.artworkImageURL){
-        //static NSMutableDictionary* imageCache = [[NSMutableDictionary alloc] initWithCapacity:kCacheCapacity];
-        
             dispatch_async(kBgQueue, ^{
                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:track.artworkImageURL]];
-
                 [self performSelectorOnMainThread:@selector(notifyTable:) withObject:image waitUntilDone:YES];
                 
         });
+    }
+    if(self.track.previewURL){
+        [self setStyle:kEnabled];
+    }
+    else{
+        [self setStyle:kDisabled];
+    }
+
+}
+
+-(void) setStyle:(CellStyleType) styleType{
+    if(styleType == kEnabled){
+       UILabel* trackName = (UILabel*)[self viewWithTag:kViewTag_TrackName];
+        trackName.textColor = [UIColor blackColor];
+        UILabel* artistName = (UILabel*)[self viewWithTag:kViewTag_ArtistName];
+        artistName.textColor = [UIColor darkGrayColor];
+    }else{
+        UILabel* trackName = (UILabel*)[self viewWithTag:kViewTag_TrackName];
+        trackName.textColor = [UIColor lightGrayColor];
+        UILabel* artistName = (UILabel*)[self viewWithTag:kViewTag_ArtistName];
+        artistName.textColor = [UIColor lightGrayColor];
     }
 }
 
@@ -97,18 +116,8 @@
     UIImageView* imageView1 = (UIImageView*)[self viewWithTag:kViewTag_ImageView];
     imageView1.image = (UIImage*) object;
 
-    /*
-     if(imageView1){
-        NSString* pathToImageFile = [[NSBundle mainBundle] pathForResource:@"Heart_Pressed_200x200" ofType:@"png"];
-        UIImage* retVal = [UIImage imageWithContentsOfFile:pathToImageFile];
-        imageView1.image = (UIImage*) retVal;
-        
-    }*/
-    
-    NSLog(@"%f image loaded: %d",[Helper millisecondsSinceStart], self.row);
-    
     [self stopLoadingIndicator];
-    [self setNeedsLayout];
+    //[self setNeedsLayout];
 }
 
 -(void) stopLoadingIndicator{
@@ -117,4 +126,6 @@
        [spinner stopAnimating];
     }
 }
+
+
 @end

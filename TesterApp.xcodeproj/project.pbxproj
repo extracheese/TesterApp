@@ -11,6 +11,9 @@
 		91FE37CD17B1B2B600E394A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91FE37CC17B1B2B600E394A3 /* QuartzCore.framework */; };
 		91FE37CF17B1B6C900E394A3 /* Heart_Pressed_200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = 91FE37CE17B1B6C900E394A3 /* Heart_Pressed_200x200.png */; };
 		B02126BB17AF6DA30005F172 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B028817817AC15F800309576 /* TableViewCell.m */; };
+		B02126C517B20CF60005F172 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02126C317B20CF60005F172 /* PlayerViewController.m */; };
+		B02126C617B20CF60005F172 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B02126C417B20CF60005F172 /* PlayerViewController.xib */; };
+		B02126C817B21A9B0005F172 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02126C717B21A9B0005F172 /* MediaPlayer.framework */; };
 		B028814217A0D79A00309576 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B028814117A0D79A00309576 /* UIKit.framework */; };
 		B028814417A0D79A00309576 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B028814317A0D79A00309576 /* Foundation.framework */; };
 		B028814617A0D79A00309576 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B028814517A0D79A00309576 /* CoreGraphics.framework */; };
@@ -30,6 +33,10 @@
 		91FE37CA17B1A64B00E394A3 /* helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helper.m; sourceTree = "<group>"; };
 		91FE37CC17B1B2B600E394A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91FE37CE17B1B6C900E394A3 /* Heart_Pressed_200x200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart_Pressed_200x200.png; sourceTree = "<group>"; };
+		B02126C217B20CF60005F172 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		B02126C317B20CF60005F172 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		B02126C417B20CF60005F172 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
+		B02126C717B21A9B0005F172 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B028813E17A0D79A00309576 /* TesterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B028814117A0D79A00309576 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B028814317A0D79A00309576 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -59,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02126C817B21A9B0005F172 /* MediaPlayer.framework in Frameworks */,
 				91FE37CD17B1B2B600E394A3 /* QuartzCore.framework in Frameworks */,
 				B028814217A0D79A00309576 /* UIKit.framework in Frameworks */,
 				B028814417A0D79A00309576 /* Foundation.framework in Frameworks */,
@@ -72,7 +80,7 @@
 		B028813517A0D79A00309576 = {
 			isa = PBXGroup;
 			children = (
-				91FE37CC17B1B2B600E394A3 /* QuartzCore.framework */,
+				B02126C717B21A9B0005F172 /* MediaPlayer.framework */,
 				B028814717A0D79A00309576 /* TesterApp */,
 				B028814017A0D79A00309576 /* Frameworks */,
 				B028813F17A0D79A00309576 /* Products */,
@@ -90,6 +98,7 @@
 		B028814017A0D79A00309576 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91FE37CC17B1B2B600E394A3 /* QuartzCore.framework */,
 				B028814117A0D79A00309576 /* UIKit.framework */,
 				B028814317A0D79A00309576 /* Foundation.framework */,
 				B028814517A0D79A00309576 /* CoreGraphics.framework */,
@@ -108,12 +117,15 @@
 				B028815917A0D79A00309576 /* ViewController.h */,
 				B028815A17A0D79A00309576 /* ViewController.m */,
 				B028815C17A0D79A00309576 /* ViewController_iPhone.xib */,
+				B028815F17A0D79A00309576 /* ViewController_iPad.xib */,
 				B028817717AC15F800309576 /* TableViewCell.h */,
 				B028817817AC15F800309576 /* TableViewCell.m */,
-				B028815F17A0D79A00309576 /* ViewController_iPad.xib */,
 				B028816F17A782A300309576 /* Track.h */,
 				B028817017A782A300309576 /* Track.m */,
 				B028814817A0D79A00309576 /* Supporting Files */,
+				B02126C217B20CF60005F172 /* PlayerViewController.h */,
+				B02126C317B20CF60005F172 /* PlayerViewController.m */,
+				B02126C417B20CF60005F172 /* PlayerViewController.xib */,
 			);
 			path = TesterApp;
 			sourceTree = "<group>";
@@ -190,6 +202,7 @@
 				B028815E17A0D79A00309576 /* ViewController_iPhone.xib in Resources */,
 				B028816117A0D79A00309576 /* ViewController_iPad.xib in Resources */,
 				91FE37CF17B1B6C900E394A3 /* Heart_Pressed_200x200.png in Resources */,
+				B02126C617B20CF60005F172 /* PlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +219,7 @@
 				B028817117A782A300309576 /* Track.m in Sources */,
 				B02126BB17AF6DA30005F172 /* TableViewCell.m in Sources */,
 				91FE37CB17B1A64B00E394A3 /* helper.m in Sources */,
+				B02126C517B20CF60005F172 /* PlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
