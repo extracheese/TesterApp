@@ -31,6 +31,7 @@
     _table = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
     _table.dataSource = self;
     _table.delegate = self;
+    [_table setSeparatorColor:[UIColor clearColor]];
     [self.view addSubview:_table];
    
     // start loading data from URL
@@ -40,6 +41,8 @@
         [self performSelectorOnMainThread:@selector(parseItunesResponse:)
                                withObject:data waitUntilDone:YES];
     });
+    
+    
 }
 
 

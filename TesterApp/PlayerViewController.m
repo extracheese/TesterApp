@@ -7,7 +7,6 @@
 //
 
 #import "PlayerViewController.h"
-#import <MediaPlayer/MediaPlayer.h>
 
 @interface PlayerViewController ()
 
@@ -25,15 +24,21 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    _player =  [[MPMoviePlayerController alloc] initWithContentURL:self.track.previewURL];
+    _player.view.frame = CGRectMake(0, 0, 400, 300);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 
-    MPMoviePlayerController *player =  [[MPMoviePlayerController alloc] initWithContentURL:self.track.previewURL];
-    player.view.frame = CGRectMake(0, 0, 400, 300);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+    [_player prepareToPlay];
+    [self.view addSubview:_player.view];
+    [_player play];
 
-    [player prepareToPlay];
-    [self.view addSubview:player.view];
-    [player play];
+}
 
+- (void) viewWillDisappear:(BOOL)animated {
+    if(_player){
+        [_player stop];
+        _player = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Track.h"
 
+#import <MediaPlayer/MediaPlayer.h>
+
 @interface PlayerViewController : UIViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil track:(Track*) track;
 
 @property (weak,nonatomic) Track* track;
+@property (strong, nonatomic) MPMoviePlayerController *player;
 @end
