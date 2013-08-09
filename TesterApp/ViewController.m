@@ -14,7 +14,7 @@
 #import "PlayerViewController.h"
 
 
-#define kItunesSearchUrl [NSURL URLWithString:@"https://itunes.apple.com/search?term=jack+johnson&limit=25"] //2
+#define kItunesSearchUrl [NSURL URLWithString:@"https://itunes.apple.com/search?term=jack+johnson&media=musicVideo&limit=25"] //2
 
 
 

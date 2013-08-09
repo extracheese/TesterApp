@@ -13,15 +13,24 @@
 - (id) initWithDictionary: (NSDictionary*) dictionary
 {
     self = [super init];
+    _trackType = kTrackUnknown;
 //    NSString* wrapper = [dictionary objectForKey: @"wrapperType"];
     _artistName = [dictionary objectForKey: @"artistName"];
     _artworkImageURL = [[NSURL alloc] initWithString: (NSString*)[dictionary objectForKey: @"artworkUrl100"]];
     _trackName = [dictionary objectForKey: @"trackName"];
     
-    NSString* urlString = (NSString*)[dictionary objectForKey: @"previewUrl"];
-    if(urlString){
-            _previewURL = [[NSURL alloc] initWithString: urlString];
-        NSLog(@"%@",urlString);
+    NSString* tempString = (NSString*)[dictionary objectForKey: @"previewUrl"];
+    if(tempString){
+        _previewURL = [[NSURL alloc] initWithString: tempString];
+
+    }
+    
+    tempString = (NSString*) [dictionary objectForKey: @"kind"];
+    if([tempString isEqualToString:@"music-video"] || [tempString isEqualToString:@"feature-movie"]){
+        _trackType = kTrackVideo;
+    }
+    else if([tempString isEqualToString: @"song"] || [tempString isEqualToString: @"podcast"]){
+        _trackType = kTrackAudio;
     }
     return self;
 }

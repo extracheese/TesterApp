@@ -13,7 +13,7 @@
 #define kViewTag_Spinner 2
 #define kViewTag_TrackName 3
 
-#define kCellHeight 80
+#define kCellHeight 100
 #define kPadding 5
 
 @implementation TableViewCell
@@ -44,14 +44,15 @@
     }
     [artistName setText:track.artistName ];
     artistName.frame = CGRectMake(kCellHeight + kPadding,
-                                  kCellHeight - [track.artistName sizeWithFont:artistName.font].height - 4,
+                                  kCellHeight/2 - [track.artistName sizeWithFont:artistName.font].height,
                                   [track.artistName sizeWithFont:artistName.font].width,
                                   [track.artistName sizeWithFont:artistName.font].height);
     
     // Setup imageview
     UIImageView* imageView = (UIImageView*)[self viewWithTag:kViewTag_ImageView];
     if(!imageView){
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, kCellHeight-10, kCellHeight-10)];
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 5, kCellHeight-10, kCellHeight-10)];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.tag = kViewTag_ImageView;
         [self addSubview:imageView];
     }

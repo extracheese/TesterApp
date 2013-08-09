@@ -25,7 +25,13 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     _player =  [[MPMoviePlayerController alloc] initWithContentURL:self.track.previewURL];
-    _player.view.frame = CGRectMake(0, 0, 400, 300);
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+    if(self.track.trackType == kTrackVideo){
+        _player.view.frame = CGRectMake(0, 0, screenRect.size.width, 300);
+    } else if(self.track.trackType == kTrackAudio){
+        _player.view.frame = CGRectMake(0, 0, screenRect.size.width, 70);
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 
     [_player prepareToPlay];

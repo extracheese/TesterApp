@@ -35,11 +35,16 @@
  }
  */
 
+typedef enum {
+    kTrackUnknown = 0,
+    kTrackAudio,
+    kTrackVideo
+} TrackType;
 
 @interface Track : NSObject
 
     - (id) initWithDictionary: (NSDictionary*) dictionary;
-
+    @property TrackType trackType;
     @property NSString* artistName;
     @property NSString* trackName;
     @property NSURL* artworkImageURL;

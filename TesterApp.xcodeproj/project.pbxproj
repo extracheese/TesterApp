@@ -122,10 +122,10 @@
 				B028817817AC15F800309576 /* TableViewCell.m */,
 				B028816F17A782A300309576 /* Track.h */,
 				B028817017A782A300309576 /* Track.m */,
-				B028814817A0D79A00309576 /* Supporting Files */,
 				B02126C217B20CF60005F172 /* PlayerViewController.h */,
 				B02126C317B20CF60005F172 /* PlayerViewController.m */,
 				B02126C417B20CF60005F172 /* PlayerViewController.xib */,
+				B028814817A0D79A00309576 /* Supporting Files */,
 			);
 			path = TesterApp;
 			sourceTree = "<group>";
